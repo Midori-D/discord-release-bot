@@ -32,7 +32,10 @@ def check_github_release():
 def index():
     return "Bot is running!"
 
-# 주기적인 작업 스케줄링
 scheduler = BackgroundScheduler()
 scheduler.add_job(func=check_github_release, trigger="interval", minutes=5)
 scheduler.start()
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host="0.0.0.0", port=port)
